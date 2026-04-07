@@ -1,0 +1,55 @@
+clc;
+clear;
+close all;
+% -----------------------------------------
+% Define input signals
+% -----------------------------------------
+n = 0:10;
+x1 = n; % First input signal
+x2 = n.^2; % Second input signal
+a = 2; % Constant a
+b = 3; % Constant b
+% -----------------------------------------
+% Define system (example system)
+% y(n) = x(n) + 2*x(n-1)
+% -----------------------------------------
+% Output for x1
+y1 = x1 + 2*[0 x1(1:end-1)];
+% Output for x2
+y2 = x2 + 2*[0 x2(1:end-1)];
+% -----------------------------------------
+% LHS: System response to (a*x1 + b*x2)
+% -----------------------------------------
+x_comb = a*x1 + b*x2;
+y_comb = x_comb + 2*[0 x_comb(1:end-1)];
+% -----------------------------------------
+% RHS: a*y1 + b*y2
+% -----------------------------------------
+y_super = a*y1 + b*y2;
+% -----------------------------------------
+% Display results
+% -----------------------------------------
+disp('LHS (T[a*x1 + b*x2]) = ');
+disp(y_comb);
+disp('RHS (a*T[x1] + b*T[x2]) = ');
+disp(y_super);
+% -----------------------------------------
+% Verification
+% -----------------------------------------
+if isequal(round(y_comb,5), round(y_super,5))
+disp('System is LINEAR');
+else
+disp('System is NON-LINEAR');
+end
+% -----------------------------------------
+% Plot comparison
+% -----------------------------------------
+figure;
+subplot(2,1,1);
+stem(n, y_comb, 'filled');
+title('LHS: T[a*x1 + b*x2]');
+xlabel('n'); ylabel('Amplitude');
+subplot(2,1,2);
+stem(n, y_super, 'filled');
+title('RHS: a*T[x1] + b*T[x2]');
+xlabel('n'); ylabel('Amplitude');

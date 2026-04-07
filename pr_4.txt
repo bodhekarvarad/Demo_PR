@@ -1,0 +1,8 @@
+clc; clear all; close all;
+% ----------------------------------------- % Program to compute Signal Energy & Power % --------
+---------------------------------
+T0 = 10; % Time limit t = -T0:0.01:T0; % Time vector
+x = 10 * sin(10pit); % Signal x(t)
+xsq = x.^2; % Square of signal
+E = trapz(t, xsq); % Energy calculation P = E / (2*T0); % Power calculation
+disp(['Energy, E = ', num2str(E), ' Joules']); disp(['Power, P = ', num2str(P), ' Watts']);

@@ -1,0 +1,56 @@
+clc;
+clear;
+close all;
+
+% Sinusoidal signal
+n = 0:0.05:2; % Time base
+x = sin(2*pi*n);
+subplot(2,3,1);
+plot(n,x);
+xlabel('n');
+ylabel('sin(n)');
+title('Sine Signal');
+
+% Unit Impulse
+n = -2:0.001:2;
+x = (n==0);
+subplot(2,3,2);
+stem(n,x);
+xlabel('n');
+ylabel('y = x(0)');
+title('Unit Impulse Signal');
+
+% Unit Step Sequence
+n = -10:0.01:10;
+x = (n>=0);
+subplot(2,3,3);
+plot(n,x);
+xlabel('n');
+ylabel('u(n)');
+title('Unit Step Sequence');
+
+% Ramp Signal
+x = n.*(n>=0);
+subplot(2,3,4);
+plot(n,x);
+xlabel('n');
+ylabel('r(n)');
+title('Ramp Signal');
+
+% Rising Exponential Signal
+n = 0:1:10;
+x = (1.5).^n;
+subplot(2,3,5);
+plot(n,x);
+xlabel('n');
+ylabel('e(n)');
+title('Rising Exponential Signal');
+
+% Decaying Exponential Signal
+n = 0:1:10;
+x = (1.5).^(-n);
+subplot(2,3,6);
+plot(n,x);
+xlabel('n');
+ylabel('e(n)');
+title('Decaying Exponential Signal');

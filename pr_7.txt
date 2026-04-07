@@ -1,0 +1,11 @@
+clc; clear; close all;
+% Time vector t = -5:0.01:5;
+% Input signal x = sin(2pi2*t); % 2 Hz sine wave
+% Number of samples N = length(x);
+% Sampling frequency fs = 1/0.01;
+% Frequency axis f = (-N/2:N/2-1)*(fs/N);
+% Fourier Transform X = fft(x); X_shift = fftshift(X);
+% Plot Time Domain Signal subplot(2,1,1) plot(t,x) title('Time Domain Signal') xlabel('Time')
+ylabel('Amplitude')
+% Plot Frequency Domain Signal subplot(2,1,2) plot(f,abs(X_shift)) title('Frequency Domain
+using Fourier Transform') xlabel('Frequency (Hz)') ylabel('Magnitude')
