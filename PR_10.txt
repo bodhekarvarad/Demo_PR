@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int board[20], n;
+
+// Function to check if placing queen is safe
+int isSafe(int row, int col) {
+    for(int i = 0; i < row; i++) {
+        // Check same column or diagonal
+        if(board[i] == col || abs(board[i] - col) == abs(i - row))
+            return 0;
+    }
+    return 1;
+}
+
+// Function to print solution
+void printSolution() {
+    printf("\nSolution:\n");
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            if(board[i] == j)
+                printf(" Q ");
+            else
+                printf(" . ");
+        }
+        printf("\n");
+    }
+}
+
+// Backtracking function
+void solveNQueen(int row) {
+    if(row == n) {
+        printSolution();
+        return;
+    }
+
+    for(int col = 0; col < n; col++) {
+        if(isSafe(row, col)) {
+            board[row] = col;       // Place queen
+            solveNQueen(row + 1);   // Recur
+            // Backtrack automatically (overwrite happens)
+        }
+    }
+}
+
+int main() {
+    printf("Enter number of queens: ");
+    scanf("%d", &n);
+
+    solveNQueen(0);
+
+    return 0;
+}

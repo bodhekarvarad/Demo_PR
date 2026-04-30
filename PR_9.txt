@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int queue[20], front = -1, rear = -1;
+int visited[20];
+
+void enqueue(int x) {
+    if(rear == 19) return;
+    if(front == -1) front = 0;
+    queue[++rear] = x;
+}
+
+int dequeue() {
+    if(front == -1) return -1;
+    int val = queue[front];
+    if(front == rear)
+        front = rear = -1;
+    else
+        front++;
+    return val;
+}
+
+void bfs(int graph[20][20], int n, int start) {
+    enqueue(start);
+    visited[start] = 1;
+
+    while(front != -1) {
+        int node = dequeue();
+        printf("%d ", node);
+
+        for(int i = 0; i < n; i++) {
+            if(graph[node][i] == 1 && !visited[i]) {
+                enqueue(i);
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+int main() {
+    int n, start;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    int graph[20][20];
+
+    printf("Enter adjacency matrix:\n");
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            scanf("%d", &graph[i][j]);
+
+    printf("Enter starting node: ");
+    scanf("%d", &start);
+
+    bfs(graph, n, start);
+
+    return 0;
+}
